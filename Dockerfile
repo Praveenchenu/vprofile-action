@@ -1,9 +1,9 @@
-FROM openjdk:11-jdk AS BUILD_IMAGE
+FROM eclipse-temurin:11-jdk AS BUILD_IMAGE
 RUN apt-get update && apt-get install -y maven
 COPY ./ vprofile-project
 RUN cd vprofile-project && mvn clean install
 
-FROM tomcat:9.0-jdk11
+FROM tomcat:9.0-jdk11-temurin
 LABEL "Project"="Vprofile"
 LABEL "Author"="Imran"
 
