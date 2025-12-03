@@ -106,8 +106,13 @@ jobs:
       - name: print config file
         run: cat ~/.kube/config  
       
+      - name: configure kubecl=tl for EKS
+        run: |
+          aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}
+      
       - name: Login to Amazon ECR
         run: |
+          kubectl delete secret regcred --ignored-not-found -n default
           kubectl create secret docker-registry regcred \
           --docker-server=597088035541.dkr.ecr.us-east-2.amazonaws.com \
           --docker-username=AWS \
