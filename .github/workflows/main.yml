@@ -112,7 +112,7 @@ jobs:
       
       - name: Login to Amazon ECR
         run: |
-          kubectl delete secret regcred --ignored-not-found -n default
+          kubectl delete secret regcred --ignore-not-found -n default
           kubectl create secret docker-registry regcred \
           --docker-server=597088035541.dkr.ecr.us-east-2.amazonaws.com \
           --docker-username=AWS \
